@@ -100,10 +100,13 @@ No arquivo "WebApiConfig" dentro da pasta "App_Start" coloque o seguinte trecho 
             jsonFormatter.SerializerSettings.DateTimeZoneHandling   = DateTimeZoneHandling.Utc;
             
             
- Resultado:
+<b>Resultado:</b>
  		[{"id":1,"nome":"Asdrubal Freitas","email":"asd@teste.com","dataNascimento":"1975-01-01T00:00:00Z","ra":123456,"cpf":"12345678901"},{"id":2,"nome":"Ascleidson Morais","email":"asc@teste.com","dataNascimento":"2005-02-01T00:00:00Z","ra":996633,"cpf":"111222333"},{"id":3,"nome":"Alsberto Firme","email":"alsb@teste.com","dataNascimento":"2010-03-01T00:00:00Z","ra":112233,"cpf":"12345612301"}]
  
  
- 
+ 			***CODE YOURSELF***
+ 			- Você deverá agora criar um client no projeto Web que irá consumir esta API.
+ 			- Use a tecnologia/framework que mais se identificar
+ 			
  
 
