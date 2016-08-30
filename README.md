@@ -105,8 +105,13 @@ No arquivo "WebApiConfig" dentro da pasta "App_Start" coloque o seguinte trecho 
  
  
  			***CODE YOURSELF***
+ 			=> Exercício 1
  			- Você deverá agora criar um client no projeto Web que irá consumir esta API.
  			- Use a tecnologia/framework que mais se identificar
  			
+ 			=> Exercício 2
+ 			- Crie um Controller API de Login 
+ 			- Crie o frontend na aplicação Web para o Login
+ 			- O login se dará pela avaliação do RA e se Mensalidade estiver paga  (como você vai organizar o código já que temos uma nova funcionalidade e provavelmente mais uma Entidade?)
  
 
