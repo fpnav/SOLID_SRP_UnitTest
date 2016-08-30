@@ -35,11 +35,10 @@ Exemplo: https://github.com/fpnav/apiteste/blob/master/ApiTeste2/Controllers/Pro
 
 Método Get -> retorna todos os alunos da lista
 
-public class AlunoController : ApiController
-    {
-
-        static List<Aluno> _alunos = new List<Aluno>
+        public class AlunoController : ApiController
         {
+         static List<Aluno> _alunos = new List<Aluno>
+         {
             new Aluno { Id = 1, Nome= "Asdrubal Freitas", Cpf= "12345678901", DataNascimento= new DateTime(1975, 01,01),
                 Ra = 123456, Email = "asd@teste.com"},
             new Aluno { Id = 2, Nome= "Ascleidson Morais", Cpf= "111222333", DataNascimento= new DateTime(2005, 02,01),
@@ -57,6 +56,10 @@ public class AlunoController : ApiController
  Vamos fazer um teste rodando a aplicação, porém agora temos várias aplicações que deverão rodar em conjunto, por exemplo a API e o projeto WEB devem startar em conjunto. Para isso, devemos clicar na Solution e em "Set StartUp Projects" e escolher os 2 projetos que deverão ser startados.
  
  Depois faremos um teste dando um F5 para debugarmos localmente a aplicação, onde deverão abrir no browser 2 páginas representando os 2 projetos que foram rodados, api e web. (reparem que a página em si aparece como um erro, na verdade é que não há uma página index que seja encontrada em nenhum dos projetos, mas estão funcionando).
+ 
+ Para testarmos o método Get da api de Alunos: http://localhost:porta/api/Aluno.
+ 
+ 
  
  
  
