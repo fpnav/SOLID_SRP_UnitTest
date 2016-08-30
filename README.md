@@ -58,7 +58,48 @@ Método Get -> retorna todos os alunos da lista
  Depois faremos um teste dando um F5 para debugarmos localmente a aplicação, onde deverão abrir no browser 2 páginas representando os 2 projetos que foram rodados, api e web. (reparem que a página em si aparece como um erro, na verdade é que não há uma página index que seja encontrada em nenhum dos projetos, mas estão funcionando).
  
  Para testarmos o método Get da api de Alunos: http://localhost:porta/api/Aluno.
+ Este deverá ser o retorno:
  
+ <ArrayOfAluno xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities">
+<Aluno>
+<Cpf>12345678901</Cpf>
+<DataNascimento>1975-01-01T00:00:00</DataNascimento>
+<Email>asd@teste.com</Email>
+<Id>1</Id>
+<Nome>Asdrubal Freitas</Nome>
+<Ra>123456</Ra>
+</Aluno>
+<Aluno>
+<Cpf>111222333</Cpf>
+<DataNascimento>2005-02-01T00:00:00</DataNascimento>
+<Email>asc@teste.com</Email>
+<Id>2</Id>
+<Nome>Ascleidson Morais</Nome>
+<Ra>996633</Ra>
+</Aluno>
+<Aluno>
+<Cpf>12345612301</Cpf>
+<DataNascimento>2010-03-01T00:00:00</DataNascimento>
+<Email>alsb@teste.com</Email>
+<Id>3</Id>
+<Nome>Alsberto Firme</Nome>
+<Ra>112233</Ra>
+</Aluno>
+</ArrayOfAluno>
+
+No entanto, gostaríamos que nosso retorno fosse em JSON e não em XML. Como deixar padrão o retorno JSON?
+
+No arquivo "WebApiConfig" dentro da pasta "App_Start" coloque o seguinte trecho de código que seta JSON como padrão e suprime o XML.
+
+            // Removendo o formatter de xml para melhorar o uso pelo browser -- comentar essa linha se quiser suportar XML
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            var jsonFormatter = config.Formatters.JsonFormatter;            
+            jsonFormatter.SerializerSettings.ContractResolver       = new CamelCasePropertyNamesContractResolver();
+            jsonFormatter.SerializerSettings.ReferenceLoopHandling  = ReferenceLoopHandling.Ignore;
+            jsonFormatter.SerializerSettings.DateTimeZoneHandling   = DateTimeZoneHandling.Utc;
+            
+            
  
  
  
