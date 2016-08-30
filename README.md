@@ -60,12 +60,12 @@ Método Get -> retorna todos os alunos da lista
  Para testarmos o método Get da api de Alunos: http://localhost:porta/api/Aluno.
  Este deverá ser o retorno:
  
- <ArrayOfAluno xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities">
-<Aluno>
-<Cpf>12345678901</Cpf>
-<DataNascimento>1975-01-01T00:00:00</DataNascimento>
-<Email>asd@teste.com</Email>
-<Id>1</Id>
+    <ArrayOfAluno xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities">
+  <Aluno>
+  <Cpf>12345678901</Cpf>
+  <DataNascimento>1975-01-01T00:00:00</DataNascimento>
+  <Email>asd@teste.com</Email>
+  <Id>1</Id>
 <Nome>Asdrubal Freitas</Nome>
 <Ra>123456</Ra>
 </Aluno>
