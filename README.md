@@ -60,32 +60,32 @@ Método Get -> retorna todos os alunos da lista
  Para testarmos o método Get da api de Alunos: http://localhost:porta/api/Aluno.
  Este deverá ser o retorno:
  
-    <ArrayOfAluno xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities">
-  <Aluno>
-  <Cpf>12345678901</Cpf>
-  <DataNascimento>1975-01-01T00:00:00</DataNascimento>
-  <Email>asd@teste.com</Email>
-  <Id>1</Id>
-<Nome>Asdrubal Freitas</Nome>
-<Ra>123456</Ra>
-</Aluno>
-<Aluno>
-<Cpf>111222333</Cpf>
-<DataNascimento>2005-02-01T00:00:00</DataNascimento>
-<Email>asc@teste.com</Email>
-<Id>2</Id>
-<Nome>Ascleidson Morais</Nome>
-<Ra>996633</Ra>
-</Aluno>
-<Aluno>
-<Cpf>12345612301</Cpf>
-<DataNascimento>2010-03-01T00:00:00</DataNascimento>
-<Email>alsb@teste.com</Email>
-<Id>3</Id>
-<Nome>Alsberto Firme</Nome>
-<Ra>112233</Ra>
-</Aluno>
-</ArrayOfAluno>
+	<ArrayOfAluno xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities">
+	<Aluno>
+		<Cpf>12345678901</Cpf>
+		<DataNascimento>1975-01-01T00:00:00</DataNascimento>
+		<Email>asd@teste.com</Email>
+		<Id>1</Id>
+		<Nome>Asdrubal Freitas</Nome>
+		<Ra>123456</Ra>
+	</Aluno>
+	<Aluno>
+		<Cpf>111222333</Cpf>
+		<DataNascimento>2005-02-01T00:00:00</DataNascimento>
+		<Email>asc@teste.com</Email>
+		<Id>2</Id>
+		<Nome>Ascleidson Morais</Nome>
+		<Ra>996633</Ra>
+	</Aluno>
+	<Aluno>
+		<Cpf>12345612301</Cpf>
+		<DataNascimento>2010-03-01T00:00:00</DataNascimento>
+		<Email>alsb@teste.com</Email>
+		<Id>3</Id>
+		<Nome>Alsberto Firme</Nome>
+		<Ra>112233</Ra>
+	</Aluno>
+	</ArrayOfAluno>
 
 No entanto, gostaríamos que nosso retorno fosse em JSON e não em XML. Como deixar padrão o retorno JSON?
 
@@ -100,7 +100,8 @@ No arquivo "WebApiConfig" dentro da pasta "App_Start" coloque o seguinte trecho 
             jsonFormatter.SerializerSettings.DateTimeZoneHandling   = DateTimeZoneHandling.Utc;
             
             
- 
+ Resultado:
+ 		[{"id":1,"nome":"Asdrubal Freitas","email":"asd@teste.com","dataNascimento":"1975-01-01T00:00:00Z","ra":123456,"cpf":"12345678901"},{"id":2,"nome":"Ascleidson Morais","email":"asc@teste.com","dataNascimento":"2005-02-01T00:00:00Z","ra":996633,"cpf":"111222333"},{"id":3,"nome":"Alsberto Firme","email":"alsb@teste.com","dataNascimento":"2010-03-01T00:00:00Z","ra":112233,"cpf":"12345612301"}]
  
  
  
