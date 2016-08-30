@@ -30,4 +30,7 @@ Criar mais 2 projetos:
 1. Projeto Web, Template Empty e Folders para API
 2. Projeto Web, Template Empty e Folders para MVC
 
+No Projeto de API vamos criar um controller WebApi para prover acesso a algumas funcionalidades de aluno:
+Exemplo: https://github.com/fpnav/apiteste/blob/master/ApiTeste2/Controllers/ProductsController.cs
+
 
