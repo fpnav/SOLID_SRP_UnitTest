@@ -24,3 +24,10 @@ c) Criar um projeto de Testes de Unidade e fazer os seguintes testes:
  - um RA válido(a quantidade de caracteres maior ou igual a 6) 
  - CPF válido (a quantidade de caracteres iggual a 11)
  - email deverá conter '@'
+
+Tarefa 2:
+Criar mais 2 projetos:
+1. Projeto Web, Template Empty e Folders para API
+2. Projeto Web, Template Empty e Folders para MVC
+
+
