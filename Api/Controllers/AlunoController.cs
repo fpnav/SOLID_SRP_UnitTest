@@ -26,7 +26,19 @@ namespace Api.Controllers
                 Email = "teste3@teste.com", Nome = "Joedson",
                 Ra = 333555}
         };
-        
+
+        public IHttpActionResult Post([FromBody] Aluno aluno)
+        {
+            Aluno alunoFinded = null;
+            if (aluno != null)
+            {
+                alunoFinded = _alunos.Find(x => x.Nome.Equals(aluno.Nome)
+                && x.Ra == aluno.Ra);
+            }
+            return Ok(alunoFinded);
+        }
+
+
         public IHttpActionResult Get()
         {
             return Ok(_alunos);
