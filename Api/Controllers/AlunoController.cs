@@ -30,6 +30,8 @@ namespace Api.Controllers
 
         public IHttpActionResult Post([FromBody] Aluno aluno)
         {
+            var uuid = Guid.NewGuid().ToString();
+
             var al = new Aluno
             {
                 Id = _alunos.OrderByDescending(x => x.Id).Select(c => c.Id).First() + 1,
