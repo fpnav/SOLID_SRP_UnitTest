@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
 
 namespace Api.Controllers
@@ -29,13 +30,18 @@ namespace Api.Controllers
 
         public IHttpActionResult Post([FromBody] Aluno aluno)
         {
-            Aluno alunoFinded = null;
-            if (aluno != null)
+            var al = new Aluno
             {
-                alunoFinded = _alunos.Find(x => x.Nome.Equals(aluno.Nome)
-                && x.Ra == aluno.Ra);
-            }
-            return Ok(alunoFinded);
+                Id = _alunos.OrderByDescending(x => x.Id).Select(c => c.Id).First() + 1,
+                Ra = aluno.Ra,
+                DataNascimento = aluno.DataNascimento,
+                Email = aluno.Email,
+                Nome = aluno.Nome,
+                Cpf = aluno.Cpf,
+            };
+            _alunos.Add(al);
+
+            return Ok(al);
         }
 
 
@@ -43,5 +49,34 @@ namespace Api.Controllers
         {
             return Ok(_alunos);
         }
+
+
+        public IHttpActionResult Put(int id, [FromBody] Aluno aluno)
+        {
+            var alunoUpdated = _alunos.Find(x => x.Id == id);
+            alunoUpdated.Cpf = aluno.Cpf;
+            alunoUpdated.DataNascimento = aluno.DataNascimento;
+            alunoUpdated.Nome = aluno.Nome;
+            alunoUpdated.Email = aluno.Email;
+            alunoUpdated.Ra = aluno.Ra;
+
+            return Ok(alunoUpdated);
+        }
+
+        public IHttpActionResult Delete([FromBody] Aluno aluno, int id)
+        {
+            Aluno alunoFinded = null;
+            if (aluno != null)
+            {
+                alunoFinded = _alunos.Find(x => x.Nome.Equals(aluno.Nome) && x.Ra == aluno.Ra);
+            }
+            else
+            {
+                alunoFinded = _alunos.Find(x => x.Id == id);
+            }
+            _alunos.Remove(alunoFinded);
+            return Ok(alunoFinded);
+        }
+
     }
 }
