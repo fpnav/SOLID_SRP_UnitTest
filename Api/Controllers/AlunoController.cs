@@ -45,14 +45,10 @@ namespace Api.Controllers
 
             return Ok(al);
         }
-
-
         public IHttpActionResult Get()
         {
             return Ok(_alunos);
         }
-
-
         public IHttpActionResult Put(int id, [FromBody] Aluno aluno)
         {
             var alunoUpdated = _alunos.Find(x => x.Id == id);
@@ -64,7 +60,6 @@ namespace Api.Controllers
 
             return Ok(alunoUpdated);
         }
-
         public IHttpActionResult Delete([FromBody] Aluno aluno, int id)
         {
             Aluno alunoFinded = null;
