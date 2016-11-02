@@ -1,39 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entities;
 
+//https://msdn.microsoft.com/pt-br/library/dn630213.aspx
 namespace SharedKernel
 {
-    public class Repository : IRepository
+    public class Repository<TEntity> : IDisposable, IRepository<TEntity> where TEntity : class
     {
-        public Context _Db { get; set; }
+        public Context ctx { get; set; }
 
         public Repository()
         {
-            _Db = new Context();
+            ctx = new Context();
         }
 
-        public void Delete(Aluno aluno)
+        public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return ctx.Set<TEntity>();
         }
 
-        public IQueryable<Aluno> GetAll()
+        public IQueryable<TEntity> Get(Func<TEntity, bool> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(predicate).AsQueryable();
         }
 
-        public Aluno GetById(int id)
+        public TEntity Find(params object[] key)
         {
-            return _Db.Alunos.Find(id);
+            return ctx.Set<TEntity>().Find(key);
         }
 
-        public void Save(Aluno aluno)
+        public void Atualizar(TEntity obj)
         {
-            throw new NotImplementedException();
+            ctx.Entry(obj).State = EntityState.Modified;
+        }
+
+        public void SalvarTodos()
+        {
+            ctx.SaveChanges();
+        }
+
+        public void Adicionar(TEntity obj)
+        {
+            ctx.Set<TEntity>().Add(obj);
+        }
+
+        public void Excluir(Func<TEntity, bool> predicate)
+        {
+            ctx.Set<TEntity>()
+                .Where(predicate).ToList()
+                .ForEach(del => ctx.Set<TEntity>().Remove(del));
+        }
+
+        public void Dispose()
+        {
+            ctx.Dispose();
         }
     }
 }

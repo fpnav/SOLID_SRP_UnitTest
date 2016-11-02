@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace SharedKernel
 {
-    public interface IRepository
+    public interface IRepository<TEntity> where TEntity : class
     {
-        Aluno GetById(int id);
-        IQueryable<Aluno> GetAll();
-        void Save(Aluno aluno);
-        void Delete(Aluno aluno);
+        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> Get(Func<TEntity, bool> predicate);
+        TEntity Find(params object[] key);
+        void Atualizar(TEntity obj);
+        void SalvarTodos();
+        void Adicionar(TEntity obj);
+        void Excluir(Func<TEntity, bool> predicate);
 
     }
 }
