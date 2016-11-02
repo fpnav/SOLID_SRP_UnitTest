@@ -6,12 +6,21 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
+using Data;
+
 
 namespace Api.Controllers
 {
     public class AlunoController : ApiController
     {
-        static List<Aluno> _alunos = new List<Aluno> {
+        private readonly IRepository<Aluno> _repo;
+
+        public AlunoController(IRepository<Aluno> repository )
+        {
+            _repo= repository;
+        }
+
+        static readonly List<Aluno> Alunos = new List<Aluno> {
             new Aluno {Id = 1, Cpf = "12345678901",
                 DataNascimento = new DateTime(1998,01,05),
                 Email = "teste1@teste.com", Nome = "Asdrubal",
@@ -28,18 +37,22 @@ namespace Api.Controllers
                 Ra = 333555}
         };
 
+
+
         public IHttpActionResult Post([FromBody] Aluno aluno)
         {
             var al = new Aluno
             {
-                Id = _alunos.OrderByDescending(x => x.Id).Select(c => c.Id).First() + 1,
+                Id = Alunos.OrderByDescending(x => x.Id).Select(c => c.Id).First() + 1,
                 Ra = aluno.Ra,
                 DataNascimento = aluno.DataNascimento,
                 Email = aluno.Email,
                 Nome = aluno.Nome,
                 Cpf = aluno.Cpf,
             };
-            _alunos.Add(al);
+            //VERSÃO ANTERIOR, SEM PERSISTENCIA
+            //_alunos.Add(al);
+
 
             return Ok(al);
         }
@@ -47,13 +60,20 @@ namespace Api.Controllers
 
         public IHttpActionResult Get()
         {
-            return Ok(_alunos);
+            //return Ok(_alunos);
+            return Ok(_repo.GetAll());
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            //return Ok(_alunos);
+            return Ok(_repo.GetById(id));
         }
 
 
         public IHttpActionResult Put(int id, [FromBody] Aluno aluno)
         {
-            var alunoUpdated = _alunos.Find(x => x.Id == id);
+            var alunoUpdated = Alunos.Find(x => x.Id == id);
             alunoUpdated.Cpf = aluno.Cpf;
             alunoUpdated.DataNascimento = aluno.DataNascimento;
             alunoUpdated.Nome = aluno.Nome;
@@ -68,13 +88,13 @@ namespace Api.Controllers
             Aluno alunoFinded = null;
             if (aluno != null)
             {
-                alunoFinded = _alunos.Find(x => x.Nome.Equals(aluno.Nome) && x.Ra == aluno.Ra);
+                alunoFinded = Alunos.Find(x => x.Nome.Equals(aluno.Nome) && x.Ra == aluno.Ra);
             }
             else
             {
-                alunoFinded = _alunos.Find(x => x.Id == id);
+                alunoFinded = Alunos.Find(x => x.Id == id);
             }
-            _alunos.Remove(alunoFinded);
+            Alunos.Remove(alunoFinded);
             return Ok(alunoFinded);
         }
 
