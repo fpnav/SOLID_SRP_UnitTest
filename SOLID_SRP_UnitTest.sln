@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAngular01", "WebAngular0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{F97DAEA8-1A31-49CD-91AD-A595DD806B22}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SOLID_SRP_UnitTest.SharedKernel", "SOLID_SRP_UnitTest.SharedKernel", "{EBF88B5B-0910-4A41-AD13-A76E8D588398}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{DF9B4F7C-7A15-4507-8C4A-554764663934}"
 EndProject
 Global
@@ -62,8 +60,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F97DAEA8-1A31-49CD-91AD-A595DD806B22} = {EBF88B5B-0910-4A41-AD13-A76E8D588398}
 	EndGlobalSection
 EndGlobal
