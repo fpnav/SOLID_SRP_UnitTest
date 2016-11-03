@@ -41,6 +41,8 @@ namespace Api.Controllers
 
         public IHttpActionResult Post([FromBody] Aluno aluno)
         {
+            var uuid = Guid.NewGuid().ToString();
+
             var al = new Aluno
             {
                 Id = Alunos.OrderByDescending(x => x.Id).Select(c => c.Id).First() + 1,
@@ -56,8 +58,6 @@ namespace Api.Controllers
 
             return Ok(al);
         }
-
-
         public IHttpActionResult Get()
         {
             //return Ok(_alunos);
@@ -69,8 +69,6 @@ namespace Api.Controllers
             //return Ok(_alunos);
             return Ok(_repo.GetById(id));
         }
-
-
         public IHttpActionResult Put(int id, [FromBody] Aluno aluno)
         {
             var alunoUpdated = Alunos.Find(x => x.Id == id);
@@ -82,7 +80,6 @@ namespace Api.Controllers
 
             return Ok(alunoUpdated);
         }
-
         public IHttpActionResult Delete([FromBody] Aluno aluno, int id)
         {
             Aluno alunoFinded = null;
